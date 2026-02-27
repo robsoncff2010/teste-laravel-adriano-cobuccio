@@ -81,31 +81,35 @@ O projeto inclui testes básicos utilizando **PHPUnit**, cobrindo:
 - **Depósitos** → garante que o saldo é atualizado corretamente após a operação. 
 
 ▶️ Como Executar
-# Clonar o repositório
-git clone https://github.com/seu-repo.git
-
-# Instalar dependências PHP
-composer install
-
-# Instalar dependências frontend
-npm install && npm run dev
-
-# Rodar migrações
-php artisan migrate
-
-# Iniciar servidor local
-php artisan serve
+Clonar o repositório
+- git clone https://github.com/seu-repo.git
 
 ▶️ Executando com Docker
 
 Subir os containers
-- docker-compose up -d
+ - docker compose up -d --build
+
+Gerar chave
+ - docker compose exec app php artisan key:generate
+
+Criar migrations
+ - docker compose exec app php artisan migrate
+
+Limpar caches
+ - docker compose exec app php artisan config:clear
+ - docker compose exec app php artisan cache:clear
+ - docker compose exec app php artisan route:clear
+
+Criar permissoes
+ - docker compose exec app mkdir -p storage/logs
+ - docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+ - docker compose exec app chmod -R 775 storage bootstrap/cache
+
+Reiniciar Nginx
+ - docker compose restart nginx
 
 Acessar o app (porta configurada no docker-compose)
 - http://localhost:8000
-
-Rodar migrações dentro do container
-- docker-compose exec app php artisan migrate
 
 📜 Licença
 Este projeto está licenciado sob a MIT License, permitindo uso, modificação e distribuição, desde que seja mantida a nota de licença original.
