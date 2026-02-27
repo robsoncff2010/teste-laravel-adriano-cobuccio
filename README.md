@@ -97,6 +97,7 @@ php artisan migrate
 php artisan serve
 
 ▶️ Executando com Docker
+
 Subir os containers
 - docker-compose up -d
 
