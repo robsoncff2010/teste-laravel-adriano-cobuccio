@@ -7,9 +7,13 @@ O Finance Dashboard é uma aplicação desenvolvida em Laravel para gerenciament
 Ele permite realizar depósitos, transferências, acompanhar o saldo e visualizar o histórico de transações.
 A interface é limpa e intuitiva, com gráficos e tabelas que ajudam o usuário a acompanhar sua evolução financeira em tempo real.
 
+Além disso, o projeto conta com:
+• 	🌗 Mudança de tema (claro/escuro), oferecendo melhor experiência visual.
+• 	🌍 Tradução (i18n), permitindo suporte a múltiplos idiomas.
+
 🛠 Tecnologias Utilizadas
 Backend
-- PHP 8.2
+- PHP 8.5
 - Laravel 12
 - Eloquent ORM (modelos e relacionamentos)
 - MySQL (banco de dados)
@@ -32,16 +36,31 @@ Infraestrutura
 - Routes → organizadas sob finance.* (deposit, transfer, history)
 
 📊 Funcionalidades
-- 💰 Cálculo de saldo (depósitos – transferências enviadas)
-- 📈 Gráficos de entradas e saídas mensais
-- 🔄 Histórico de transações (com remetente, destinatário e status)
-- 📊 Dashboard com últimas transações
-- 🔐 Autenticação e gerenciamento de perfil de usuário
-- 📂 Menus dropdown para Financeiro e Usuário, consistentes com Breeze
+- Dashboard
+    - Exibe saldo atual, entradas, saídas e total de transações.
+    - Mostra gráficos de distribuição (depósitos x transferências) e evolução do saldo.
+    - Lista as últimas transações com status (Concluída, Revertida, etc.).
+- Depósitos
+    - Tela para adicionar valores à carteira.
+    - Atualiza automaticamente o saldo e os gráficos.
+- Transferências
+    - Permite enviar valores para outros usuários.
+    - Mostra remetente, destinatário e status da operação.
+- Histórico de Transações
+    - Tabela completa com todas as transações realizadas.
+    - Filtros por tipo, data e status.
+    - Opção de reverter depósitos diretamente pela interface.
+    - Solicitação de reversão em transferências, permitindo que o usuário peça a reversão e acompanhe o status.
+- Perfil do Usuário
+    - Gerenciamento de dados pessoais.
+    - Opção de logout e edição de informações.
+- Tema Claro/Escuro 
+    - Alternância entre modo claro e escuro para melhor experiência visual.
+- Tradução (i18n)
+    - Suporte a múltiplos idiomas via __('messages.*').
 
 📌 Fluxo da Arquitetura
 Controller → Service → Repository → Model → Database
-
 
 - Controller: recebe requisições HTTP e chama os serviços.
 - Service: agrega e prepara os dados para a view.
