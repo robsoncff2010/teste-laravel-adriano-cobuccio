@@ -29,6 +29,11 @@ Infraestrutura
 - Vite (bundler para assets JS/CSS)
 - Laravel Breeze (autenticação e scaffolding inicial)
 - PHPUnit (testes automatizados)
+- Docker (containerização do ambiente)  
+  - App (Laravel/PHP-FPM) → porta 8000  
+  - Nginx (proxy reverso)  
+  - Vite (build frontend)  
+  - MySQL (banco de dados)
 
 📂 Estrutura do Projeto
 - Repositories → consultas ao banco de dados (TransactionRepository)
@@ -73,7 +78,7 @@ Controller → Service → Repository → Model → Database
 🧪 Testes Automatizados
 O projeto inclui testes básicos utilizando **PHPUnit**, cobrindo:
 - **Login de usuário** → valida credenciais e autenticação.  
-- **Depósitos** → garante que o saldo é atualizado corretamente após a operação.  
+- **Depósitos** → garante que o saldo é atualizado corretamente após a operação. 
 
 ▶️ Como Executar
 # Clonar o repositório
@@ -91,7 +96,15 @@ php artisan migrate
 # Iniciar servidor local
 php artisan serve
 
+▶️ Executando com Docker
+Subir os containers
+- docker-compose up -d
 
+Acessar o app (porta configurada no docker-compose)
+- http://localhost:8000
+
+Rodar migrações dentro do container
+- docker-compose exec app php artisan migrate
 
 📜 Licença
 Este projeto está licenciado sob a MIT License, permitindo uso, modificação e distribuição, desde que seja mantida a nota de licença original.
