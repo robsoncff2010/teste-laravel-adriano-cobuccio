@@ -28,6 +28,7 @@ Infraestrutura
 - NPM (gerenciador de pacotes frontend)
 - Vite (bundler para assets JS/CSS)
 - Laravel Breeze (autenticação e scaffolding inicial)
+- PHPUnit (testes automatizados)
 
 📂 Estrutura do Projeto
 - Repositories → consultas ao banco de dados (TransactionRepository)
@@ -68,6 +69,11 @@ Controller → Service → Repository → Model → Database
 - Repository: executa consultas e formata os resultados.
 - Model: representa entidades e relacionamentos.
 - Database: armazena transações, transferências e usuários.
+
+🧪 Testes Automatizados
+O projeto inclui testes básicos utilizando **PHPUnit**, cobrindo:
+- **Login de usuário** → valida credenciais e autenticação.  
+- **Depósitos** → garante que o saldo é atualizado corretamente após a operação.  
 
 ▶️ Como Executar
 # Clonar o repositório
