@@ -6,6 +6,7 @@ services:
     container_name: teste-adriano-cobuccio-laravel-app
     volumes:
       - .:/var/www/html
+    command: sh -c "composer install && php-fpm"
     networks:
       - laravel
 
