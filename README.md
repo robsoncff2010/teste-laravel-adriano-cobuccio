@@ -81,8 +81,12 @@ O projeto inclui testes básicos utilizando **PHPUnit**, cobrindo:
 - **Depósitos** → garante que o saldo é atualizado corretamente após a operação. 
 
 ▶️ Como Executar
+
 Clonar o repositório
-- git clone https://github.com/seu-repo.git
+ - git clone https://github.com/robsoncff2010/teste-laravel-adriano-cobuccio.git
+
+Instalar dependencias
+ - composer install
 
 ▶️ Executando com Docker
 
@@ -105,8 +109,8 @@ Criar permissoes
  - docker compose exec app chown -R www-data:www-data storage bootstrap/cache
  - docker compose exec app chmod -R 775 storage bootstrap/cache
 
-Reiniciar Nginx
- - docker compose restart nginx
+Rodar servidor de desenvolvimento
+ - docker compose exec app npm run dev
 
 Acessar o app (porta configurada no docker-compose)
 - http://localhost:8000
