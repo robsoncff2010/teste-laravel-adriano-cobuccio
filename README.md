@@ -8,8 +8,8 @@ It provides a clean UI with charts and tables, allowing users to visualize their
 
 🛠 Tech Stack
 Backend
-- PHP 8.x
-- Laravel 10.x
+- PHP 8.2
+- Laravel 12
 - Eloquent ORM (models, relationships)
 - MySQL (database)
 Frontend
