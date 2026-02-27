@@ -8,8 +8,9 @@ Ele permite realizar depósitos, transferências, acompanhar o saldo e visualiza
 A interface é limpa e intuitiva, com gráficos e tabelas que ajudam o usuário a acompanhar sua evolução financeira em tempo real.
 
 Além disso, o projeto conta com:
-• 	🌗 Mudança de tema (claro/escuro), oferecendo melhor experiência visual.
-• 	🌍 Tradução (i18n), permitindo suporte a múltiplos idiomas.
+
+- 🌗 Mudança de tema (claro/escuro), oferecendo melhor experiência visual.
+- 🌍 Tradução (i18n), permitindo suporte a múltiplos idiomas.
 
 🛠 Tecnologias Utilizadas
 Backend
