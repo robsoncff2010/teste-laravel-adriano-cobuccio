@@ -10,8 +10,8 @@
                 <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform"
                       style="{{ session('theme') === 'dark' ? 'transform: translateX(20px);' : '' }}"></span>
             </span>
-            <span class="ml-2 text-gray-800 dark:text-gray-200">
-                {{ session('theme') === 'dark' ? 'Tema Escuro' : 'Tema Claro' }}
+            <span class="ml-2 font-medium text-sm text-gray-700 dark:text-gray-300">
+                {{ session('theme') === 'dark' ? __('messages.dark_theme') : __('messages.light_theme') }}
             </span>
         </label>
     </form>
@@ -28,7 +28,7 @@
                     style="{{ app()->getLocale() === 'en' ? 'transform: translateX(20px);' : '' }}">
                 </span>
             </span>
-            <span class="ml-2 text-gray-800 dark:text-gray-200">
+            <span class="ml-2 font-medium text-sm text-gray-700 dark:text-gray-300">
                 {{ app()->getLocale() === 'en' ? 'English' : 'Português' }}
             </span>
         </label>

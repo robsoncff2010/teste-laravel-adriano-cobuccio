@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('messages.deposit') }}
+            {{ __('messages.transfer') }}
         </h2>
     </x-slot>
     
@@ -18,20 +18,33 @@
 
                         <header>
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('messages.deposit') }}
+                                {{ __('messages.transfer') }}
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                {{ __('messages.deposit_description') }}
+                                {{ __('messages.transfer_description') }}
                             </p>
                         </header>
 
-                        <form id="deposit-form" method="POST" action="{{ route('finance.deposit.store') }}" class="mt-4">
+                        <form id="transfer-form" method="POST" action="{{ route('finance.transfer.store') }}" class="mt-4">
                             @csrf
 
-                            <div>
+                            {{-- Seleção de usuário destinatário --}}
+                            <div class="mt-4">
+                                <x-input-label for="receiver_id" :value="__('Select User')" />
+                                <select id="receiver_id" name="receiver_id" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="">-- {{ __('messages.choose_user') }} --</option>
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            {{-- Valor da transferência --}}
+                            <div class="mt-4">
                                 <x-input-label for="amount" :value="__('messages.amount')" />
-                                <x-text-input id="amount" name="amount" type="text" 
+                                <x-text-input id="amount" name="amount" type="text"  
                                     class="mt-1 block w-full text-green-600" autocomplete="amount" />
                             </div>
                             
@@ -39,21 +52,21 @@
                                 <x-primary-button
                                     type="button"
                                     x-data=""
-                                    x-on:click="$dispatch('open-modal', 'confirm-add-deposit')"
+                                    x-on:click="$dispatch('open-modal', 'confirm-add-transfer')"
                                 >
-                                    {{ __('messages.add_deposit') }}
+                                    {{ __('messages.add_transfer') }}
                                 </x-primary-button>
                             </div>
                         </form>
 
-                        <x-modal name="confirm-add-deposit" :show="$errors->isNotEmpty()" focusable>
+                        <x-modal name="confirm-add-transfer" :show="$errors->isNotEmpty()" focusable>
                             <div class="p-6">
                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                    {{ __('messages.confirm_add_deposit') }}
+                                    {{ __('messages.confirm_transfer') }}
                                 </h2>
 
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    {{ __('messages.confirm_add_deposit_description') }}
+                                    {{ __('messages.confirm_transfer_description') }}
                                 </p>
 
                                 {{-- Exibe erros dentro do modal também --}}
@@ -73,8 +86,8 @@
                                     </x-danger-button>
 
                                     {{-- Confirmar envia o formulário principal --}}
-                                    <x-primary-button class="ms-3" 
-                                        x-on:click="document.getElementById('deposit-form').submit()">
+                                    <x-primary-button class="ms-3"  
+                                        x-on:click="document.getElementById('transfer-form').submit()">
                                         {{ __('messages.confirm') }}
                                     </x-primary-button>
                                 </div>

@@ -3,27 +3,36 @@
 namespace App\Services;
 
 use App\Repositories\TransactionRepository;
+use App\Models\User;
 
 class DashboardService
 {
-    protected $transactionRepository;
+    public function __construct(
+        protected TransactionRepository $repository
+    ) {}
 
-    public function __construct(TransactionRepository $transactionRepository)
+    public function getData(User $user)
     {
-        $this->transactionRepository = $transactionRepository;
-    }
+        $balance             = $this->repository->getBalance($user);
+        $incomes             = $this->repository->getIncomes($user);
+        $expenses            = $this->repository->getExpenses($user);
+        $totalTransactions   = $this->repository->getTotalTransactions($user);
+        $latestTransactions  = $this->repository->getLatestTransactions($user);
+        $chartIncomes        = $this->repository->getMonthlyIncomes($user)->values();
+        $chartExpenses       = $this->repository->getMonthlyExpenses($user)->values();
+        $chartDepositsTotal  = $this->repository->getTotalDeposits($user);
+        $chartTransfersTotal = $this->repository->getTotalTransfers($user);
 
-    /**
-     * Retorna os dados do dashboard para o usuário autenticado
-     */
-    public function getData(): array
-    {
-        $user = auth()->user();
-
-        return [
-            'name'    => $user->name,
-            'email'   => $user->email,
-            'balance' => $user->balance,
-        ];
+        return compact(
+            'balance',
+            'incomes',
+            'expenses',
+            'totalTransactions',
+            'latestTransactions',
+            'chartIncomes',
+            'chartExpenses',
+            'chartDepositsTotal',
+            'chartTransfersTotal'
+        );
     }
 }

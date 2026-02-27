@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ session('locale') ?? app()->getLocale() }}"
+    class="{{ session('theme') === 'dark' ? 'dark' : '' }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,23 +15,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-
-    <div class="flex justify-end w-full px-6 py-4">
-        <button 
-            id="theme-toggle" 
-            class="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
-            {{ __('Profile') }} - Alternar Tema
-        </button>
-    </div>
-
-    <script>
-        const btn = document.getElementById('theme-toggle');
-        btn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
-    </script>
-
     <body class="font-sans text-gray-900 antialiased">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-end w-full px-6 py-4">
+                <x-preferences-toggle />
+            </div>
+        </div>
+
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">

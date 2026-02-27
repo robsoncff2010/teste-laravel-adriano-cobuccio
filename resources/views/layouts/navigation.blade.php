@@ -13,31 +13,41 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('messages.portfolio') }}
                     </x-nav-link>
                 </div>
 
-                <!-- Financeiro Menu -->
-                <div class="relative group hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-5 text-gray-700 hover:text-gray-900 focus:outline-none">
-                        {{ __('Financeiro') }}
-                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <!-- Submenu -->
-                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-2 w-48">
-                        <x-nav-link :href="route('finance.deposit.create')" :active="request()->routeIs('finance.deposit.create')">
-                            {{ __('messages.deposit') }}
-                        </x-nav-link>
-                        <x-nav-link>
-                            {{ __('Transferência') }}
-                        </x-nav-link>
-                        <x-nav-link>
-                            {{ __('Histórico') }}
-                        </x-nav-link>
-                    </div>
+                <!-- Finance Menu -->
+                <div class="hidden sm:flex sm:items-center sm:ms-10">
+                    <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('messages.finance') }}</div>
+                                <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('finance.deposit.create')" :active="request()->routeIs('finance.deposit.create')">
+                                {{ __('messages.deposit') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('finance.transfer.create')" :active="request()->routeIs('finance.transfer.create')">
+                                {{ __('messages.transfer') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('finance.history.index')" :active="request()->routeIs('finance.history.index')">
+                                {{ __('messages.history') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -60,7 +70,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('messages.profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -68,7 +78,7 @@
                             @csrf
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -91,16 +101,16 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.portfolio') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('finance.deposit.create')" :active="request()->routeIs('finance.deposit.create')">
-                {{ __('Depósito') }}
+                {{ __('messages.deposit') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link>
-                {{ __('Transferência') }}
+            <x-responsive-nav-link :href="route('finance.transfer.create')" :active="request()->routeIs('finance.transfer.create')">
+                {{ __('messages.transfer') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link>
-                {{ __('Histórico') }}
+            <x-responsive-nav-link :href="route('finance.history.index')" :active="request()->routeIs('finance.history.index')">
+                {{ __('messages.history') }}
             </x-responsive-nav-link>
         </div>
 
@@ -113,13 +123,13 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('messages.profile') }}
                 </x-responsive-nav-link>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('messages.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

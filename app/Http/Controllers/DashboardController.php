@@ -12,9 +12,9 @@ class DashboardController extends Controller
         $this->dashboardService = $dashboardService;
     }
 
-    public function create()
+    public function index()
     {
-        $data = $this->dashboardService->getData();
+        $data = $this->dashboardService->getData(auth()->user());
 
         return view('dashboard', $data);
     }

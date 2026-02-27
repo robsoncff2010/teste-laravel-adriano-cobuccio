@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Finance;
+
+use App\Http\Controllers\Controller;
 use App\Http\Requests\DepositRequest;
-use App\Services\DepositService;
+use App\Services\TransactionService;
 
 class DepositController extends Controller
 {
-    protected $depositService;
+    protected $transactionService;
 
-    public function __construct(DepositService $depositService)
+    public function __construct(TransactionService $transactionService)
     {
-        $this->depositService = $depositService;
+        $this->transactionService = $transactionService;
     }
 
     public function create()
@@ -20,7 +22,7 @@ class DepositController extends Controller
 
     public function store(DepositRequest $request)
     {
-        $this->depositService->deposit(auth()->user(), $request->amount);
+        $this->transactionService->createDeposit(auth()->user(), $request->amount);
 
         return redirect()
             ->route('finance.deposit.create')
