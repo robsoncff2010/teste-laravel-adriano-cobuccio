@@ -31,7 +31,6 @@ Route::middleware(['auth'])->prefix('financeiro')->group(function () {
     Route::post('/{transaction}/request-reversal', [HistoryController::class, 'requestReversal'])->name('finance.history.requestReversal');
 });
 
-
 Route::post('/theme-switch', function (Request $request) {
     session(['theme' => $request->theme === 'dark' ? 'dark' : 'light']);
 

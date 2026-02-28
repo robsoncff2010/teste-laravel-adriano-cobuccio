@@ -8,6 +8,10 @@ class HistoryService
 {
     public function revert(Transaction $transaction): bool
     {
+        if ($transaction->amount > $transaction->user->balance) {
+            throw new \Exception(__('messages.insufficient_funds_reversal'));
+        }
+
         if ($transaction->type === Transaction::TYPE_DEPOSIT 
             && $transaction->status === Transaction::STATUS_COMPLETED) {
 

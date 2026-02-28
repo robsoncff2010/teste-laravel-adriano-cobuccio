@@ -86,4 +86,5 @@ return [
     'per_page_10'                          => '10 per page',
     'per_page_25'                          => '25 per page',
     'reversal_request_failed'              => 'Unable to submit reversal request.',
+    'insufficient_funds_reversal'          => 'Insufficient funds to perform reversal.',
 ];

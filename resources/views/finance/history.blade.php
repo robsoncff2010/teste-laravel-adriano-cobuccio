@@ -21,6 +21,16 @@
                             </div>
                         @endif
 
+                        @if ($errors->any())
+                            <div class="text-red-600 font-semibold mb-4">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                         <header>
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                 {{ __('messages.history') }}
@@ -154,6 +164,7 @@
                                     <p class="text-gray-600 dark:text-gray-300 mb-6">
                                         {{ __('messages.confirm_revert_description') }}
                                     </p>
+
                                     <div class="flex justify-end space-x-3">
                                         <x-danger-button @click="$dispatch('close-modal', 'confirm-revert-{{ $transaction['id'] }}')">
                                             {{ __('messages.cancel') }}
@@ -177,6 +188,7 @@
                                     <p class="text-gray-600 dark:text-gray-300 mb-6">
                                         {{ __('messages.confirm_request_reversal_description') }}
                                     </p>
+
                                     <div class="flex justify-end space-x-3">
                                         <x-danger-button @click="$dispatch('close-modal', 'confirm-request-{{ $transaction['id'] }}')">
                                             {{ __('messages.cancel') }}
